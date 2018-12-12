@@ -3,10 +3,59 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SqlReformatter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="1024">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="5" x:Name="stackChecks">
+            <CheckBox Content="AlignClauseBodies" Click="OptionClick"/>
+            <CheckBox Content="AlignColumnDefinitionFields" Click="OptionClick"/>
+            <CheckBox Content="AlignSetClauseItem" Click="OptionClick"/>
+            <CheckBox Content="AsKeywordOnOwnLine" Click="OptionClick"/>
+            <CheckBox Content="IncludeSemicolons" Click="OptionClick"/>
+            <CheckBox Content="IndentSetClause" Click="OptionClick"/>
+            <CheckBox Content="IndentViewBody" Click="OptionClick"/>
+            <CheckBox Content="MultilineInsertSourcesList" Click="OptionClick"/>
+            <CheckBox Content="MultilineInsertTargetsList" Click="OptionClick"/>
+            <CheckBox Content="MultilineSelectElementsList" Click="OptionClick"/>
+            <CheckBox Content="MultilineSetClauseItems" Click="OptionClick"/>
+            <CheckBox Content="MultilineViewColumnsList" Click="OptionClick"/>
+            <CheckBox Content="MultilineWherePredicatesList" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeCloseParenthesisInMultilineList" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeFromClause" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeGroupByClause" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeHavingClause" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeJoinClause" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeOffsetClause" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeOpenParenthesisInMultilineList" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeOrderByClause" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeOutputClause" Click="OptionClick"/>
+            <CheckBox Content="NewLineBeforeWhereClause" Click="OptionClick"/>
+            <StackPanel Margin="0,5">
+                <TextBlock Text="KeywordCasing"/>
+                <ComboBox SelectionChanged="CaseChanged" x:Name="cbxCase">
+                    <ComboBoxItem>LowerCase</ComboBoxItem>
+                    <ComboBoxItem>UpperCase</ComboBoxItem>
+                    <ComboBoxItem>PascalCase</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="IndentationSize"/>
+                <TextBox Width="60" Margin="5,0" TextChanged="IndentChanged" x:Name="txtIdent"/>
+            </StackPanel>
+        </StackPanel>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="0"
+                Margin="5" Content="Reformat" Click="ReformatSqlClick"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="SourceBox" Margin="5" Grid.Row="0"/>
+            <TextBox x:Name="DestBox" Margin="5" Grid.Row="1" IsReadOnly="True"/>
+        </Grid>
     </Grid>
 </Window>
